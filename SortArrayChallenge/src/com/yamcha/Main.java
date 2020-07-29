@@ -10,7 +10,8 @@ public class Main {
         // write your code here
         int[] test = getIntegers(5);
         printArray(test);
-
+        int[] sorted = sortIntegers(test);
+        System.out.println("Sorted: " + Arrays.toString(sorted));
 
     }
 
@@ -29,8 +30,16 @@ public class Main {
     }
 
     public static int[] sortIntegers(int[] array) {
-        int[] sortedArray = new int[array.length];
-        
+        int[] sortedArray = array;
+        Arrays.sort(sortedArray);
+
+        int temp = 0;
+        for (int i = 0; i < (sortedArray.length) / 2; i++) {
+            temp = sortedArray[i];
+            sortedArray[i] = sortedArray[sortedArray.length - 1 - i];
+            sortedArray[sortedArray.length - 1 - i] = temp;
+        }
+        return sortedArray;
     }
 
 
