@@ -12,6 +12,7 @@ public class Main {
         printArray(test);
         int[] sorted = sortIntegers(test);
         System.out.println("Sorted: " + Arrays.toString(sorted));
+        System.out.println("Minimum Value: " + findMin(sorted));
 
     }
 
@@ -40,6 +41,17 @@ public class Main {
             sortedArray[sortedArray.length - 1 - i] = temp;
         }
         return sortedArray;
+    }
+
+    public static int findMin(int[] array) {
+        int min = Integer.MAX_VALUE;
+
+        for(int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
     }
 
 
