@@ -1,9 +1,6 @@
 package com.yamcha;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static ArrayList<Album> albums = new ArrayList<>();
@@ -31,8 +28,6 @@ public class Main {
         albums.get(0).addToPlayList(1, playlist);
 
         play(playlist);
-
-
     }
 
     private static void play(LinkedList<Song> playlist) {
@@ -45,6 +40,7 @@ public class Main {
             return;
         } else {
             System.out.println("Now playing " + iterator.next().toString());
+            printMenu();
         }
 
         while (!quit) {
@@ -85,10 +81,50 @@ public class Main {
                         forward = true;
                     }
                     break;
-                case 3:
-
-
+                case 3: // replay current song
+                    if (forward) {
+                        if (iterator.hasPrevious()) {
+                            System.out.println("Now Playing: " + iterator.previous().toString());
+                            forward = false;
+                        } else {
+                            System.out.println("reached start of list");
+                        }
+                    } else {
+                        if (iterator.hasNext()) {
+                            System.out.println("Now Playing: " + iterator.next().toString());
+                            forward = true;
+                        } else {
+                            System.out.println("reached end of list");
+                        }
+                    }
+                    break;
+                case 4:
+                    printList(playlist);
+                    break;
+                case 5:
+                    printMenu();
+                    break;
             }
         }
+    }
+
+    private static void printMenu() {
+        System.out.println("Available Options: \npress");
+        System.out.println("0 - quit\n" +
+                "1 - play next song\n" +
+                "2 - play previous song\n" +
+                "3 - replay current song\n" +
+                "4 - list songs in playlist\n" +
+                "5 - print available options"
+        );
+    }
+
+    private static void printList(LinkedList<Song> playList) {
+        Iterator<Song> iterator = playList.iterator();
+        System.out.println("=======================");
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        System.out.println("=======================");
     }
 }
