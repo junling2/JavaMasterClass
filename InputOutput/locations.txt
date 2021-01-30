@@ -1,0 +1,5 @@
+1: forest
+2: lake
+3: mountain
+4: lodge
+5: hotel
